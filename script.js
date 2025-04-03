@@ -1,6 +1,6 @@
 // List of Apex Legends characters
 const legends = [
-    'Ash', 'Ballistic', 'Bangalore', 'Bloodhound', 'Catalyst', 'Caustic',
+    'Alter', 'Ash', 'Ballistic', 'Bangalore', 'Bloodhound', 'Catalyst', 'Caustic',
     'Conduit', 'Crypto', 'Fuse', 'Gibraltar', 'Horizon', 'Lifeline',
     'Loba', 'Mad Maggie', 'Mirage', 'Newcastle', 'Octane', 'Pathfinder',
     'Rampart', 'Revenant', 'Seer', 'Valkyrie', 'Vantage', 'Wattson', 'Wraith'
@@ -40,7 +40,7 @@ function populateReel(reel, characters) {
     
     // Add extra items for smooth scrolling
     const totalItems = characters.length;
-    const extraItems = 10; // Increased for smoother spinning
+    const extraItems = 10; // Number of extra items for smooth scrolling
     
     // Add items before
     for (let i = 0; i < extraItems; i++) {
@@ -86,10 +86,8 @@ function spinReel(reel, finalCharacter, duration) {
         container.style.transition = `transform ${duration}ms cubic-bezier(0.1, 0.5, 0.5, 1)`;
         container.style.transform = `translateY(${finalPosition}px)`;
         
-        // Update the result box after spinning
+        // Resolve after spinning
         setTimeout(() => {
-            const resultBox = reel.parentElement.querySelector('.result-box');
-            resultBox.textContent = finalCharacter.name;
             resolve();
         }, duration);
     });
@@ -108,8 +106,8 @@ function spinSlotMachine() {
 
     // Generate random characters for each reel
     const reelCharacters = Array.from(slotReels).map(() => {
-        // Get 10 random characters for the reel
-        const characters = getRandomCharacters(10);
+        // Get all legends shuffled
+        const characters = [...legends].sort(() => 0.5 - Math.random());
         
         // Find a final character that hasn't been used
         let finalIndex;
@@ -179,9 +177,6 @@ function initializeReels() {
     slotReels.forEach(reel => {
         const characters = getRandomCharacters(10);
         populateReel(reel, characters);
-        
-        const resultBox = reel.parentElement.querySelector('.result-box');
-        resultBox.textContent = '???';
     });
 
     // Add click event listener

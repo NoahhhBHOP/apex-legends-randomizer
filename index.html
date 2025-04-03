@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Legends Squad Randomizer</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <canvas id="backgroundCanvas"></canvas>
     <div class="slot-machine">
         <div class="slot-header">
-            <div class="neon-text">APEX LEGENDS SQUAD RANDOMIZER</div>
+            <div class="neon-text">
+                <div>Apex Legends</div>
+                <div>Squad Randomizer</div>
+            </div>
             <div class="vegas-lights"></div>
         </div>
 
         <div class="slot-machine-body">
             <div class="slot-display">
                 <div class="slot-column">
-                    <div class="player-name">NOAHHH</div>
+                    <div class="player-name" data-text="noahhh">Noahhh</div>
                     <div class="slot-window">
                         <div class="slot-reel" id="noahhhReel">
                             <div class="reel-container">
@@ -28,14 +35,11 @@
                                 <div class="reel-item"></div>
                             </div>
                         </div>
-                        <div class="result-box" id="noahhhResult">
-                            <span class="placeholder">?????</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="slot-column">
-                    <div class="player-name">NINO</div>
+                    <div class="player-name" data-text="nino">Nino</div>
                     <div class="slot-window">
                         <div class="slot-reel" id="ninoReel">
                             <div class="reel-container">
@@ -46,14 +50,11 @@
                                 <div class="reel-item"></div>
                             </div>
                         </div>
-                        <div class="result-box" id="ninoResult">
-                            <span class="placeholder">?????</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="slot-column">
-                    <div class="player-name">CRASHY</div>
+                    <div class="player-name" data-text="crashy">Crashy</div>
                     <div class="slot-window">
                         <div class="slot-reel" id="crashyReel">
                             <div class="reel-container">
@@ -64,19 +65,19 @@
                                 <div class="reel-item"></div>
                             </div>
                         </div>
-                        <div class="result-box" id="crashyResult">
-                            <span class="placeholder">?????</span>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <button class="slot-lever-container" type="button" aria-label="Pull Lever">
                 <div class="lever-base"></div>
-                <div class="lever-arm"></div>
+                <div class="lever-arm">
+                    <div class="lever-handle"></div>
+                </div>
             </button>
         </div>
     </div>
+    <script src="background.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 
