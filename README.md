@@ -1,1 +1,1 @@
-# apex-legends-randomizer
+# https://noahhhbhop.github.io/apex-legends-randomizer/
