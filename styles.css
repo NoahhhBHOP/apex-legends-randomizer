@@ -1,0 +1,448 @@
+/* Modern CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom Properties */
+:root {
+    --primary-color: #ff4655;
+    --secondary-color: #0f1923;
+    --accent-color: #1f2937;
+    --text-color: #ffffff;
+    --text-secondary: #9ca3af;
+    --transition-speed: 0.3s;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Slot Machine Container */
+.slot-machine {
+    background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+    border: 8px solid gold;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.5);
+    max-width: 1200px;
+    width: 95%;
+}
+
+/* Slot Reel */
+.slot-reel {
+    position: relative;
+    width: 180px;
+    height: 450px;
+    background: #000;
+    overflow: hidden;
+}
+
+.slot-reel::after {
+    display: none;
+}
+
+/* Slot Machine Container */
+.slot-machine-body {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Header Styles */
+.slot-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.neon-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px #ff4655,
+                 0 0 10px #ff4655,
+                 0 0 20px #ff4655,
+                 0 0 40px #ff4655;
+    animation: neonPulse 1.5s infinite alternate;
+}
+
+/* Vegas Lights Animation */
+.vegas-lights {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        #ff4655, #ffd700, #ff4655, #ffd700, 
+        #ff4655, #ffd700, #ff4655, #ffd700);
+    background-size: 200% 100%;
+    animation: vegasLights 2s linear infinite;
+}
+
+/* Slot Display */
+.slot-display {
+    display: flex;
+    justify-content: space-around;
+    gap: 0;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    flex: 1;
+    position: relative;
+}
+
+/* Add continuous red line across all reels */
+.slot-display::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% + 25px);
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(255, 0, 0, 0) 0%, 
+        #ff0000 5%, 
+        #ff0000 95%, 
+        rgba(255, 0, 0, 0) 100%
+    );
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Slot Column */
+.slot-column {
+    flex: 1;
+    text-align: center;
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 15px 10px;
+    border: 3px solid #ff4655;
+    box-shadow: 0 0 15px rgba(255, 70, 85, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Add reel separators */
+.slot-column:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 15px;
+    bottom: 15px;
+    width: 6px;
+    background: linear-gradient(to right,
+        rgba(26, 26, 26, 0),
+        #333333 30%,
+        #4a4a4a 50%,
+        #333333 70%,
+        rgba(26, 26, 26, 0)
+    );
+    z-index: 1;
+}
+
+.player-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffd700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Slot Window */
+.slot-window {
+    background: #000;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    height: 450px;
+    width: 180px;
+    padding: 0;
+    margin: 0 auto;
+    z-index: 0;
+}
+
+.reel-container {
+    position: absolute;
+    width: 180px;
+    left: 0;
+    transition: transform 2s cubic-bezier(0.1, 0.5, 0.5, 1);
+}
+
+.reel-item {
+    height: 150px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.reel-item img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ff4655;
+    display: block;
+}
+
+/* Highlight effect for the centered item */
+.reel-item.centered img {
+    filter: brightness(1.2);
+    border-width: 3px;
+    box-shadow: 0 0 15px rgba(255, 70, 85, 0.5);
+}
+
+/* Result Box */
+.result-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slot Lever */
+.slot-lever-container {
+    position: relative;
+    width: 60px;
+    height: 450px;
+    margin-left: 20px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.lever-base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 45px;
+    background: #ff4655;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 70, 85, 0.3);
+}
+
+.lever-arm {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 375px;
+    background: #ff4655;
+    transform-origin: bottom center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 70, 85, 0.3);
+}
+
+/* Create the handle as part of the arm using pseudo-element */
+.lever-arm::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.lever-arm:hover::after {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.slot-lever-container.pulled .lever-arm {
+    transform: translateX(-50%) rotate(30deg);
+}
+
+/* Remove the separate handle element */
+.lever-handle {
+    display: none;
+}
+
+/* Animations */
+@keyframes neonPulse {
+    from {
+        text-shadow: 0 0 5px #ff4655,
+                     0 0 10px #ff4655,
+                     0 0 20px #ff4655,
+                     0 0 40px #ff4655;
+    }
+    to {
+        text-shadow: 0 0 5px #ff4655,
+                     0 0 15px #ff4655,
+                     0 0 25px #ff4655,
+                     0 0 45px #ff4655;
+    }
+}
+
+@keyframes vegasLights {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slot-machine-body {
+        flex-direction: column;
+    }
+
+    .slot-display {
+        flex-direction: column;
+    }
+
+    .slot-lever-container {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .neon-text {
+        font-size: 1.8rem;
+    }
+
+    .player-name {
+        font-size: 1.2rem;
+    }
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Glass Card Effect */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+/* Randomizer Section */
+.randomizer-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Character Display */
+.character-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.character-image-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(255, 70, 85, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.character-image-container.loading {
+    animation: pulse 1.5s infinite;
+}
+
+.character-image-container.loading .character-image {
+    animation: spin 1s linear infinite;
+}
+
+.result-box span:not(.placeholder) {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.character-image {
+    animation: characterSwitch 0.3s ease-out;
+}
+
+/* Loading Animation */
+.loading .character-image {
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .randomizer-section {
+        grid-template-columns: 1fr;
+    }
+
+    .character-image-container {
+        width: 150px;
+        height: 150px;
+    }
+} 
