@@ -1,3 +1,24 @@
+// Theme Switcher
+const themeToggle = document.getElementById('themeToggle');
+const theme = localStorage.getItem('theme');
+
+// Check if user previously selected a theme
+if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeToggle.checked = true;
+}
+
+// Listen for toggle changes
+themeToggle.addEventListener('change', function() {
+    if (this.checked) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
 // List of Apex Legends characters
 const legends = [
     'Alter', 'Ash', 'Ballistic', 'Bangalore', 'Bloodhound', 'Catalyst', 'Caustic',
